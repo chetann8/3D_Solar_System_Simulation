@@ -1,0 +1,196 @@
+body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            font-family: 'Inter', sans-serif;
+            background-color: #000; /* Default black background for space */
+            color: #fff; /* Default white text */
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            transition: background-color 0.5s ease; /* Smooth transition for background */
+        }
+        canvas {
+            flex-grow: 1; /* Canvas takes up remaining space */
+            display: block;
+        }
+        #info, #controls-panel {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7); /* Slightly darker background for panels */
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+            max-height: calc(100vh - 20px); /* Limit height for scrollability */
+            overflow-y: auto; /* Enable scrolling for panels */
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+        #info {
+            top: 10px;
+            left: 10px;
+            max-width: 250px;
+        }
+        #controls-panel {
+            top: 10px;
+            right: 10px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        h1, h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #FFD700; /* Gold-like color for headings */
+            transition: color 0.5s ease;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .planet-color-box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .planet-control {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .planet-control:last-child {
+            border-bottom: none;
+        }
+        .planet-control label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ADD8E6; /* Light blue for planet names */
+            transition: color 0.5s ease;
+        }
+        .planet-control input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none; /* Override default slider styles */
+            height: 8px;
+            background: #d3d3d3; /* Grey background */
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            border-radius: 4px;
+        }
+        .planet-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4CAF50; /* Green thumb */
+            cursor: pointer;
+        }
+        .planet-control input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+        .speed-value {
+            float: right;
+            font-size: 0.8em;
+            color: #ccc;
+            transition: color 0.5s ease;
+        }
+        .control-button {
+            background-color: #007BFF; /* Blue button */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: calc(100% - 8px); /* Adjust for margin */
+        }
+        .control-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tooltip style */
+        #planet-tooltip {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            pointer-events: none; /* Allows mouse events to pass through to canvas */
+            white-space: nowrap;
+            display: none; /* Hidden by default */
+            transform: translate(-50%, -100%); /* Center horizontally, push up from cursor */
+            z-index: 101;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Dark Mode styles */
+        body.light-mode {
+            background-color: #C0D8F0; /* Light blue background */
+            color: #333;
+        }
+        body.light-mode #info,
+        body.light-mode #controls-panel {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode h1, body.light-mode h2 {
+            color: #000;
+        }
+        body.light-mode .planet-control label {
+            color: #0056b3;
+        }
+        body.light-mode .speed-value {
+            color: #666;
+        }
+        body.light-mode .control-button {
+            background-color: #3366CC;
+        }
+        body.light-mode .control-button:hover {
+            background-color: #224488;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            #info, #controls-panel {
+                position: static; /* Stack panels on small screens */
+                width: auto;
+                max-width: none;
+                margin: 10px;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            body {
+                flex-direction: column; /* Stack vertically */
+                height: auto;
+            }
+            canvas {
+                order: -1; /* Canvas appears first */
+            }
+            #controls-panel {
+                order: 1;
+            }
+            #info {
+                order: 2;
+            }
+        }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System 3D Simulation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="solarscript.js"></script>
+    <link rel="stylesheet" href="solarstyles.css">
+</head>
+<body>
+    <div id="info">
+        <!--This division contains all the information about this simulation like, planet name and its associated colors alog with what functionality can this simulation do-->
+        <h1>Solar System Simulation</h1>
+        <p> *Use mouse to orbit and scroll to zoom.</p>
+        <p> *Hover on the planet to view its name and click to focus its camera view</p>
+        <p>Planets and their relative colors</p>
+        <ul>
+            <li><span class="planet-color-box" style="background-color: #A9A9A9;"></span> Mercury</li>
+            <li><span class="planet-color-box" style="background-color: #FF6600;"></span> Venus</li>
+            <li><span class="planet-color-box" style="background-color: #0077BE;"></span> Earth</li>
+            <li><span class="planet-color-box" style="background-color: #CC0000;"></span> Mars</li>
+            <li><span class="planet-color-box" style="background-color: #FFCC66;"></span> Jupiter</li>
+            <li><span class="planet-color-box" style="background-color: #FFD100;"></span> Saturn</li>
+            <li><span class="planet-color-box" style="background-color: #0099FF;"></span> Uranus</li>
+            <li><span class="planet-color-box" style="background-color: #3366FF;"></span> Neptune</li>
+        </ul>
+    </div>
+
+    <div id="controls-panel">
+        <!--This division will have all the controls of planets such as pause or resume the simulation, toggle effect to view te simulatio in light or dark mode, reset camera button that will change the view of simulation back to its original place and individual speed buttons of each planet-->
+        <h2>Simulation Controls</h2>
+        <button id="pauseResumeButton" class="control-button">Pause Animation</button>
+        <button id="toggleLightModeButton" class="control-button">Toggle Light Mode</button>
+        <button id="resetCameraButton" class="control-button">Reset Camera</button>
+        <hr style="border-color: rgba(255, 255, 255, 1); margin: 5px 0;">
+        <h2>Planet Speed Controls</h2>
+        <!--Planet speed controls will be dynamically added here by JavaScript-->
+    </div>
+
+    <div id="planet-tooltip" style="display: none;">
+        <!--When overed on any planet, it will display that particular planet's name-->
+    </div>
+</body>
+</html>
